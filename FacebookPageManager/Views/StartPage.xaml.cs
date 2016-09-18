@@ -1,7 +1,4 @@
-﻿using System.Text;
-using Xamarin.Forms;
-
-namespace gluontest
+﻿namespace gluontest
 {
 	public partial class StartPage : BaseContentPage
 	{
@@ -36,14 +33,13 @@ namespace gluontest
 		async void PagePosts_Clicked(object sender, System.EventArgs e)
 		{
 			var posts = await App.Facebook.GetPosts(App.FacebookSettings.CurrentPage);
-			App.Navigate(new PostsList(App.FacebookSettings.CurrentPage, posts));
+			App.Navigate(new PostsList("Published Posts:", App.FacebookSettings.CurrentPage, posts));
 		}
 
 		async void UnpublishedPosts_Clicked(object sender, System.EventArgs e)
 		{
 			var posts = await App.Facebook.GetUnpublishedPosts(App.FacebookSettings.CurrentPage);
-			App.Navigate(new PostsList(App.FacebookSettings.CurrentPage, posts));
+			App.Navigate(new PostsList("Unpublished Posts:", App.FacebookSettings.CurrentPage, posts));
 		}
 	}
 }
-

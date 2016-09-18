@@ -15,9 +15,11 @@ namespace gluontest
 			App.NavigateOut();
 		}
 
-		public PostsList(FacebookPage page, FacebookPagedCollection<FacebookPost> posts)
+		public PostsList(string headerText, FacebookPage page, FacebookPagedCollection<FacebookPost> posts)
 		{
 			InitializeComponent();
+
+			labelPostHeader.Text = headerText;
 			currentPage = page;
 			postsCollection = posts;
 		}
@@ -26,6 +28,7 @@ namespace gluontest
 		{
 			return new Label
 			{
+				FontSize = 8,
 				Text = post.Message ?? post.Story
 			};
 		}
@@ -35,13 +38,12 @@ namespace gluontest
 			base.OnAppearing();
 
 			var cursor = postsCollection;
-			int currentIndex = 0;
+
 			while (!cursor.IsEmpty)
 			{
 				foreach (var fbPage in cursor.Data)
 				{
-					stackPostList.Children.Insert(currentIndex, CreatePostView(fbPage));
-					currentIndex = 1;
+					stackPostList.Children.Add(CreatePostView(fbPage));
 				}
 				cursor = await cursor.Next();
 			}
