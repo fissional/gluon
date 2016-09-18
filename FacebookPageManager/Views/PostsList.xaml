@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gluontest.PostsList">
+	<ContentPage.Content>
+		<StackLayout>
+			<StackLayout x:Name="stackPostList" Padding="22, 0" VerticalOptions="StartAndExpand">
+				<StackLayout Padding="0" VerticalOptions="End">
+					<Label x:Name="labelLoading" Text="Loading Posts..." Margin="6" FontSize="14" />
+				</StackLayout>
+			</StackLayout>
+			<StackLayout VerticalOptions="End">
+				<Button Text="&lt; Back" BorderWidth="1" Clicked="btnBack_Clicked" />
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

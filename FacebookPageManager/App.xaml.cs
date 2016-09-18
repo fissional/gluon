@@ -23,8 +23,8 @@ namespace gluontest
 
 		public App()
 		{
-			Facebook = new FacebookApi(FacebookSettings.Token);
 			InitializeComponent();
+			Facebook = new FacebookApi(FacebookSettings.Token);
 			MainPage = GetMainPage();
 		}
 

@@ -35,6 +35,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\StartPage.xaml" />
+    <EmbeddedResource Include="Views\PostsList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -53,6 +56,9 @@
     </Compile>
     <Compile Include="Views\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PostsList.xaml.cs">
+      <DependentUpon>PostsList.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
