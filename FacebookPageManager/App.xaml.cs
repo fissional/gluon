@@ -38,7 +38,7 @@ namespace gluontest
 			return _NavPage;
 		}
 
-		public static void Navigate(ContentPage page)
+		public static void Navigate(Page page)
 		{
 			_NavPage.Navigation.PushModalAsync(page);
 		}
