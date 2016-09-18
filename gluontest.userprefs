@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{A7DF8901-1EC9-4740-A038-E74B935F8E61}|Default">
+  <MonoDevelop.Ide.ItemProperties.gluontest.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.7191C0A9-F7F1-46E2-9949-CFD83DA6AA19" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="iOS/LoginPageRenderer.cs">
+    <Files>
+      <File FileName="iOS/LoginPageRenderer.cs" Line="7" Column="34" />
+      <File FileName="iOS/AppDelegate.cs" Line="18" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="gluontest" expanded="True" selected="True">
+            <Node name="gluontest.iOS" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Packages" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

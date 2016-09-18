@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<local:BaseContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:local="clr-namespace:gluontest" x:Class="gluontest.StartPage">
+	<StackLayout Padding="8, 16">
+		<Label Text="" />
+	</StackLayout>
+	<StackLayout x:Name="buttonStack" Orientation="Vertical" IsVisible="false" VerticalOptions="EndAndExpand">
+		<Button Text="View Posts" BorderWidth="1" IsVisible="false" />
+		<Button Text="Settings" BorderWidth="1" Clicked="btnSettings_Clicked" />
+	</StackLayout>
+</local:BaseContentPage>
