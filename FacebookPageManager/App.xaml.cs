@@ -9,7 +9,7 @@ namespace gluontest
 		/// Saved authorization token for the Facebook API
 		/// </summary>
 		// TODO: this should be stored somewhere in persistent memory so the app can load it on launch
-		public readonly string Token = "EAAPDHvSh7ZA4BAHfMCVqlvK6TxX3ZCAFpzbvylmT6dioj3SzW9uxPQp5PXJwwQqocHqmzVXsRr049hMnWhq3v06b1SUc8PFUNI1LXXufExpniFl25dBqZBy3SUuSob5F0daSqsvHIZApF3DgYsOiGRMIDkQDMEUZD";
+		public readonly string Token = "";
 
 		/// <summary>
 		/// The Facebook Page the app is currently managing
