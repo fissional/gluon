@@ -46,7 +46,7 @@ namespace gluontest
 			if (parameters != null)
 				foreach (var parameter in parameters)
 				{
-					url.Append($"{parameter.Key}={parameter.Value}");
+					url.Append($"&{parameter.Key}={parameter.Value}");
 				}
 
 			m_request = WebRequest.CreateHttp(url.ToString());
