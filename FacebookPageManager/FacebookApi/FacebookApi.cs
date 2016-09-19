@@ -111,7 +111,7 @@ namespace gluontest
 		public async Task<string> CreatePost(FacebookPage page, string message, bool isPublished, DateTime? publishDate = null)
 		{
 			var requestParameters = new Dictionary<string, string>
-			 {
+			{
 				{ "message", message },
 				{ "published", isPublished ? "1" : "0" },
 			};

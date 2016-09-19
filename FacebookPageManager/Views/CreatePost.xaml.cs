@@ -18,6 +18,8 @@ namespace gluontest
 		private async void btnCreatePost_Clicked(object sender, EventArgs e)
 		{
 			await App.Facebook.CreatePost(App.FacebookSettings.CurrentPage, editorPostBody.Text, true);
+			// jump to post details
+			App.NavigateOut();
 		}
 
 		private void datePost_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
