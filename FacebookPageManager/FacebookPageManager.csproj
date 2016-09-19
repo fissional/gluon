@@ -44,6 +44,9 @@
     <EmbeddedResource Include="Views\CreatePost.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PostDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -70,6 +73,9 @@
     </Compile>
     <Compile Include="Views\CreatePost.xaml.cs">
       <DependentUpon>CreatePost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PostDetails.xaml.cs">
+      <DependentUpon>PostDetails.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
