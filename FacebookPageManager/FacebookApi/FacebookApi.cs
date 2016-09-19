@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace gluontest
 {
@@ -72,6 +73,12 @@ namespace gluontest
 			return result;
 		}
 
+		/// <summary>
+		/// Gets a specific insight for a Facebook post
+		/// </summary>
+		/// <returns>An insight object, potentially paged, with the requested data</returns>
+		/// <param name="post">Facebook post for which to retrieve <paramref name="insightName"/></param>
+		/// <param name="insightName">API name of the insight to retrieve</param>
 		public async Task<FacebookPagedCollection<FacebookInsight>> GetPostInsight(FacebookPost post, string insightName)
 		{
 			var req = new FacebookApiRequest(m_token, post.Id, $"insights/{insightName}", null);
@@ -79,6 +86,10 @@ namespace gluontest
 			return result;
 		}
 
+		/// <summary>
+		/// Get the number of people this post has reached. Page posts only
+		/// </summary>
+		/// <param name="post">Facebook post for which to get reach</param>
 		public async Task<int> GetViewCount(FacebookPost post)
 		{
 			var insights = await GetPostInsight(post, "post_impressions_unique");
@@ -123,7 +134,11 @@ namespace gluontest
 			// this operation requires a page access token for this page
 			var req = new FacebookApiRequest(page.AccessToken, "POST", page.Id, "feed", requestParameters);
 			var result = await req.GetRawResult();
-			return result;
+
+			var jsonRoot = JObject.Parse(result);
+			if (jsonRoot["id"] != null)
+				return jsonRoot["id"].Value<string>();
+			return null;
 		}
 	}
 }
