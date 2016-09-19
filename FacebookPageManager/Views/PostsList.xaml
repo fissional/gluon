@@ -5,24 +5,27 @@
 	</ContentPage.Padding>
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0">
-			<StackLayout VerticalOptions="Start" Padding="16, 24, 0, 0" Orientation="Horizontal">
+			<StackLayout VerticalOptions="Start" Padding="16, 24, 0, 0" Orientation="Vertical">
 				<Label x:Name="labelPostHeader" Text="Posts" />
+				<Label x:Name="labelEmpty" Text="No posts found :(" IsVisible="false" Margin="6" FontSize="14" />
 			</StackLayout>
-			<ListView x:Name="listPosts" Style="{StaticResource ApiItemList}">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<ViewCell>
-							<StackLayout VerticalOptions="CenterAndExpand">
-								<Label Style="{StaticResource ListMajorItem}" VerticalOptions="Start" LineBreakMode="TailTruncation" Text="{Binding Path=Body}" />
-								<StackLayout VerticalOptions="End" Orientation="Horizontal">
-									<Label Style="{StaticResource ListMinorItem}" VerticalOptions="End" HorizontalOptions="Start" Text="{Binding InsightViewCount}" />
-									<Label Style="{StaticResource ListMinorItem}" VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="{Binding CreatedTime}" />
+			<StackLayout VerticalOptions="CenterAndExpand" Margin="0, 8, 0, 0">
+				<ListView x:Name="listPosts" Style="{StaticResource ApiItemList}" ItemSelected="Handle_PostSelected">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<ViewCell>
+								<StackLayout VerticalOptions="CenterAndExpand">
+									<Label Style="{StaticResource ListMajorItem}" VerticalOptions="Start" LineBreakMode="TailTruncation" Text="{Binding Path=Body}" />
+									<StackLayout VerticalOptions="End" Orientation="Horizontal">
+										<Label Style="{StaticResource ListMinorItem}" VerticalOptions="End" HorizontalOptions="Start" Text="{Binding InsightViewCount}" />
+										<Label Style="{StaticResource ListMinorItem}" VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="{Binding CreatedTime}" />
+									</StackLayout>
 								</StackLayout>
-							</StackLayout>
-						</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
+							</ViewCell>
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
 			<StackLayout VerticalOptions="End">
 				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" />
 			</StackLayout>

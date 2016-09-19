@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
@@ -56,6 +57,7 @@ namespace gluontest
 
 			var user = await App.Facebook.GetMe();
 			var cursor = await App.Facebook.GetPages(user);
+			var anyDataFound = cursor.Data.Any();
 
 			while (!cursor.IsEmpty)
 			{
@@ -66,8 +68,15 @@ namespace gluontest
 				cursor = await cursor.Next();
 			}
 
-			// hide the loading indicator
-			labelLoading.IsVisible = false;
+			// hide the loading indicator or update to empty indicator
+			if (anyDataFound)
+			{
+				labelLoading.IsVisible = false;
+			}
+			else
+			{
+				labelLoading.Text = "No pages found :(";
+			}
 		}
 	}
 }
