@@ -1,4 +1,5 @@
-﻿namespace gluontest
+﻿using Xamarin.Forms;
+namespace gluontest
 {
 	public partial class StartPage : BaseContentPage
 	{
@@ -18,10 +19,28 @@
 				{
 					labelPageHeader.Text = App.FacebookSettings.CurrentPage.Name;
 					stackPageActions.IsVisible = true;
+
+					foreach (var child in stackPageActions.Children)
+					{
+						if (child is Button)
+						{
+							child.IsEnabled = true;
+						}
+					}
+				}
+				else
+				{
+					foreach (var child in stackPageActions.Children)
+					{
+						if (child is Button)
+						{
+							child.IsEnabled = false;
+						}
+					}
 				}
 
 				// show the UI if we've logged in
-				this.buttonStack.IsVisible = true;
+				//this.buttonStack.IsVisible = true;
 			}
 		}
 

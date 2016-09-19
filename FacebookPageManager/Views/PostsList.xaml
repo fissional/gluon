@@ -10,7 +10,7 @@
 				<Label x:Name="labelEmpty" Text="No posts found :(" IsVisible="false" Margin="6" FontSize="14" />
 			</StackLayout>
 			<StackLayout VerticalOptions="CenterAndExpand" Margin="0, 8, 0, 0">
-				<ListView x:Name="listPosts" Style="{StaticResource ApiItemList}">
+				<ListView x:Name="listPosts" Style="{StaticResource ApiItemList}" ItemSelected="listPosts_ItemSelected">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
@@ -28,7 +28,7 @@
 			</StackLayout>
 			<StackLayout VerticalOptions="End" Orientation="Horizontal">
 				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" WidthRequest="140" HorizontalOptions="StartAndExpand" />
-				<Button Text="Post Details &gt;" Style="{StaticResource ActionButton}" Clicked="btnDetails_Clicked" WidthRequest="140" HorizontalOptions="End" />
+				<Button Text="Post Details &gt;" x:Name="buttonPostDetails" Style="{StaticResource ActionButton}" Clicked="btnDetails_Clicked" WidthRequest="140" IsEnabled="false" HorizontalOptions="End" />
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

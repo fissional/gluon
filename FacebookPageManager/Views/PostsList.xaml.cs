@@ -28,6 +28,13 @@ namespace gluontest
 			{
 				return;
 			}
+
+			App.Navigate(new PostDetails((FacebookPost)listPosts.SelectedItem));
+		}
+
+		private void listPosts_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+		{
+			buttonPostDetails.IsEnabled = sender != null;
 		}
 
 		private View CreatePostView(FacebookPost post)
@@ -42,6 +49,10 @@ namespace gluontest
 		protected async override void OnAppearing()
 		{
 			base.OnAppearing();
+			if (listPosts.ItemsSource != null)
+			{
+				return;
+			}
 
 			var cursor = postsCollection;
 			var allPosts = new ObservableCollection<FacebookPost>();

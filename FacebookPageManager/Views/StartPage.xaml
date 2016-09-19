@@ -5,15 +5,15 @@
 		xmlns:local="clr-namespace:gluontest" x:Class="gluontest.StartPage">
 	<StackLayout Padding="0">
 		<Label x:Name="labelPageHeader" Text="No page selected" Style="{StaticResource HeaderLabel}" />
-		<StackLayout x:Name="stackPageActions" VerticalOptions="Start" IsVisible="false" >
+		<StackLayout x:Name="stackPageActions" VerticalOptions="Start">
 			<Label Text="View" />
 			<Button Text="Page Posts" BorderWidth="1" Clicked="PagePosts_Clicked" />
 			<Button Text="Unpublished Posts" BorderWidth="1" Clicked="UnpublishedPosts_Clicked" />
 			<Label Text="Add" />
 			<Button Text="New Post" BorderWidth="1" Clicked="CreatePost_Clicked" />
 		</StackLayout>
-		<StackLayout x:Name="buttonStack" Orientation="Vertical" IsVisible="false" VerticalOptions="EndAndExpand">
-			<Button Text="Settings" Style="{StaticResource ActionButton}" BorderWidth="1" Clicked="btnSettings_Clicked" />
+		<StackLayout x:Name="buttonStack" Orientation="Vertical" VerticalOptions="EndAndExpand">
+			<Button Text="Select Page" Style="{StaticResource ActionButton}" BorderWidth="1" Clicked="btnSettings_Clicked" />
 		</StackLayout>
 	</StackLayout>
 </local:BaseContentPage>
