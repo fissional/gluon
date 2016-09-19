@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="gluontest.PostDetails">
+	<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+	</ContentPage.Padding>
+	<ContentPage.Content>
+		<StackLayout Margin="0" Padding="0">
+			<StackLayout Padding="16, 24, 0, 0" VerticalOptions="Start">
+				<Label>Post Details</Label>
+			</StackLayout>
+			<StackLayout Padding="20, 8, 0, 0" VerticalOptions="StartAndExpand">
+				<Label Style="{StaticResource DetailLabel}">Post Body</Label>
+				<Label Style="{StaticResource DetailValue}" Text="{Binding Body}" />
+			</StackLayout>
+			<StackLayout VerticalOptions="End">
+				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" />
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
