@@ -9,25 +9,25 @@ namespace gluontest
 	{
 		FacebookPagedCollection<FacebookPost> postsCollection;
 
-		void btnBack_Clicked(object sender, EventArgs e)
-		{
-			App.NavigateOut();
-		}
-
-		void btnDetails_Clicked(object sender, EventArgs e)
-		{
-			if (listPosts.SelectedItem == null)
-			{
-				return;
-			}
-		}
-
 		public PostsList(string headerText, FacebookPagedCollection<FacebookPost> posts)
 		{
 			InitializeComponent();
 
 			labelPostHeader.Text = headerText;
 			postsCollection = posts;
+		}
+
+		private void btnBack_Clicked(object sender, EventArgs e)
+		{
+			App.NavigateOut();
+		}
+
+		private void btnDetails_Clicked(object sender, EventArgs e)
+		{
+			if (listPosts.SelectedItem == null)
+			{
+				return;
+			}
 		}
 
 		private View CreatePostView(FacebookPost post)

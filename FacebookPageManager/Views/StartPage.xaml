@@ -10,7 +10,7 @@
 			<Button Text="Page Posts" BorderWidth="1" Clicked="PagePosts_Clicked" />
 			<Button Text="Unpublished Posts" BorderWidth="1" Clicked="UnpublishedPosts_Clicked" />
 			<Label Text="Add" />
-			<Button Text="New Post" BorderWidth="1" />
+			<Button Text="New Post" BorderWidth="1" Clicked="CreatePost_Clicked" />
 		</StackLayout>
 		<StackLayout x:Name="buttonStack" Orientation="Vertical" IsVisible="false" VerticalOptions="EndAndExpand">
 			<Button Text="Settings" Style="{StaticResource ActionButton}" BorderWidth="1" Clicked="btnSettings_Clicked" />

@@ -9,17 +9,17 @@ namespace gluontest
 {
 	public partial class PagesList : ContentPage
 	{
-		void btnBack_Clicked(object sender, System.EventArgs e)
-		{
-			App.NavigateOut();
-		}
+		private Button SelectedPageButton;
 
 		public PagesList()
 		{
 			InitializeComponent();
 		}
 
-		private Button SelectedPageButton;
+		private void btnBack_Clicked(object sender, System.EventArgs e)
+		{
+			App.NavigateOut();
+		}
 
 		private void SelectPage(Button button, FacebookPage page)
 		{
