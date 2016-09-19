@@ -55,7 +55,7 @@ namespace gluontest
 		/// <param name="page">Facebook user object</param>
 		public async Task<FacebookPagedCollection<FacebookPost>> GetUnpublishedPosts(FacebookPage page)
 		{
-			var req = new FacebookApiRequest(m_token, page.Id, "promotable_posts", new Dictionary<string, string> { {"is_published", "false"} });
+			var req = new FacebookApiRequest(m_token, page.Id, "promotable_posts", new Dictionary<string, string> { { "is_published", "false" } });
 			var result = await req.GetResults<FacebookPost>();
 			return result;
 		}
@@ -98,6 +98,31 @@ namespace gluontest
 		{
 			var req = new FacebookApiRequest(m_token, "me");
 			var result = await req.GetResult<FacebookUser>();
+			return result;
+		}
+
+		/// <summary>
+		/// Creates a new post on a Facebook Page
+		/// </summary>
+		/// <param name="page">Page on which to create the post</param>
+		/// <param name="message">Body of the new post</param>
+		/// <param name="isPublished">If set to <c>true</c> the post will be published and a story generated</param>
+		/// <param name="publishDate">Date on which the post should be published - if before DateTime.Now, the post will be backdated</param>
+		public async Task<string> CreatePost(FacebookPage page, string message, bool isPublished, DateTime? publishDate = null)
+		{
+			var requestParameters = new Dictionary<string, string>
+			 {
+				{ "message", message },
+				{ "published", isPublished ? "1" : "0" },
+			};
+			if (publishDate.HasValue)
+			{
+				var dateParamName = publishDate.Value > DateTime.Now ? "scheduled_publish_time" : "backdated_time";
+				requestParameters[dateParamName] = publishDate.Value.ToString();
+			}
+			// this operation requires a page access token for this page
+			var req = new FacebookApiRequest(page.AccessToken, "POST", page.Id, "feed", requestParameters);
+			var result = await req.GetRawResult();
 			return result;
 		}
 	}

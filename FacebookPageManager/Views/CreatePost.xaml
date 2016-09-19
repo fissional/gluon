@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gluontest.CreatePost">
+<ContentPage
+		xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="gluontest.CreatePost">
 	<ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
 	</ContentPage.Padding>
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0">
-			<StackLayout VerticalOptions="StartAndExpand">
+			<StackLayout VerticalOptions="Start">
+				<Label>Create New Post</Label>
+			</StackLayout>
+			<StackLayout VerticalOptions="StartAndExpand" Margin="12, 4">
+				<Label>Post Contents:</Label>
+				<Editor x:Name="editorPostBody" HeightRequest="100">
+				</Editor>
+				<Label></Label>
+				<Label>Post Date:</Label><DatePicker x:Name="datePost" PropertyChanged="datePost_PropertyChanged" />
+				<Label x:Name="labelUnpublished" TextColor="Red" IsVisible="false">
+					* unpublished post
+				</Label>
 			</StackLayout>
 			<StackLayout VerticalOptions="End" Orientation="Horizontal">
 				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" WidthRequest="140" HorizontalOptions="StartAndExpand" />
-				<Button Text="Create Post &gt;" Style="{StaticResource ActionButton}" Clicked="btnDetails_Clicked" WidthRequest="140" HorizontalOptions="End" />
+				<Button Text="Create Post &gt;" Style="{StaticResource ActionButton}" Clicked="btnCreatePost_Clicked" WidthRequest="140" HorizontalOptions="End" />
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

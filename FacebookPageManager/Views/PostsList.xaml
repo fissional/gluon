@@ -10,7 +10,7 @@
 				<Label x:Name="labelEmpty" Text="No posts found :(" IsVisible="false" Margin="6" FontSize="14" />
 			</StackLayout>
 			<StackLayout VerticalOptions="CenterAndExpand" Margin="0, 8, 0, 0">
-				<ListView x:Name="listPosts" Style="{StaticResource ApiItemList}" ItemSelected="Handle_PostSelected">
+				<ListView x:Name="listPosts" Style="{StaticResource ApiItemList}">
 					<ListView.ItemTemplate>
 						<DataTemplate>
 							<ViewCell>
