@@ -29,6 +29,19 @@ namespace gluontest
 		}
 
 		/// <summary>
+		/// Get a single object with the provided ID
+		/// </summary>
+		/// <returns>object representing the Facebook node requested</returns>
+		/// <param name="nodeId">Node ID</param>
+		/// <typeparam name="T">Type of the Node</typeparam>
+		public async Task<T> GetObject<T>(string nodeId)
+		{
+			var req = new FacebookApiRequest(m_token, nodeId);
+			var result = await req.GetResult<T>();
+			return result;
+		}
+
+		/// <summary>
 		/// Get all the Facebook pages the provided user has rights to
 		/// </summary>
 		/// <param name="user">Facebook user object</param>
