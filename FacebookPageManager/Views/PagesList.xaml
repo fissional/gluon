@@ -4,7 +4,7 @@
         <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
 	</ContentPage.Padding>
 	<ContentPage.Content>
-		<StackLayout>
+		<StackLayout Padding="0">
 			<StackLayout VerticalOptions="Start" Padding="16, 32, 0, 0" >
 				<Label Text="Select a Facebook Page:" />
 				<Label x:Name="labelLoading" Text="Loading Pages..." Margin="6" FontSize="14" />
@@ -12,7 +12,7 @@
 			<StackLayout x:Name="stackPageList" Padding="22, 0" VerticalOptions="StartAndExpand">
 			</StackLayout>
 			<StackLayout VerticalOptions="End">
-				<Button Text="&lt; Back" BorderWidth="1" Clicked="btnBack_Clicked" />
+				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" />
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

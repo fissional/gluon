@@ -2,6 +2,9 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gluontest.App">
 	<Application.Resources>
 		<ResourceDictionary>
+			<Style x:Key="ActionButton" TargetType="Button">
+				<Setter Property="BorderWidth" Value="1" />
+			</Style>
 			<Style x:Key="SelectedButton" TargetType="Button">
 				<Setter Property="BackgroundColor" Value="#aacceecc" />
 			</Style>
@@ -11,6 +14,21 @@
 			<Style x:Key="HeaderLabel" TargetType="Label">
 				<Setter Property="FontSize" Value="18" />
 				<Setter Property="Margin" Value="8, 12" />
+			</Style>
+
+			<Style x:Key="ApiItemList" TargetType="ListView">
+				<Setter Property="Margin" Value="12, 0" />
+				<Setter Property="RowHeight" Value="48" />
+				<Setter Property="SeparatorVisibility" Value="None" />
+			</Style>
+			<Style x:Key="ListMajorItem" TargetType="Label">
+				<Setter Property="FontSize" Value="11" />
+				<Setter Property="HeightRequest" Value="36" />
+			</Style>
+			<Style x:Key="ListMinorItem" TargetType="Label">
+				<Setter Property="TextColor" Value="#888" />
+				<Setter Property="FontSize" Value="11" />
+				<Setter Property="VerticalOptions" Value="End" />
 			</Style>
 		</ResourceDictionary>
 	</Application.Resources>

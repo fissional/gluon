@@ -19,6 +19,13 @@ namespace gluontest
 
 	public partial class App : Application
 	{
+		public static readonly string[] RequiredPermissions = new string[] 
+		{
+			"manage_pages",
+			"publish_pages",
+			"read_insights",
+		};
+		
 		public static readonly AppFacebookSettings FacebookSettings = new AppFacebookSettings();
 
 		public App()

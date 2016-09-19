@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace gluontest
 {
@@ -71,6 +70,25 @@ namespace gluontest
 			var req = new FacebookApiRequest(m_token, post.Id, "likes", null);
 			var result = await req.GetResults<FacebookUser>();
 			return result;
+		}
+
+		public async Task<FacebookPagedCollection<FacebookInsight>> GetPostInsight(FacebookPost post, string insightName)
+		{
+			var req = new FacebookApiRequest(m_token, post.Id, $"insights/{insightName}", null);
+			var result = await req.GetResults<FacebookInsight>();
+			return result;
+		}
+
+		public async Task<int> GetViewCount(FacebookPost post)
+		{
+			var insights = await GetPostInsight(post, "post_impressions_unique");
+			var uniqueViews = insights.Data.Sum(i => i.Values.Sum(x =>
+			{
+				int val = 0;
+				Int32.TryParse(x.Value, out val);
+				return val;
+			}));
+			return uniqueViews;
 		}
 
 		/// <summary>

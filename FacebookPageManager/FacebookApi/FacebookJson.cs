@@ -5,13 +5,6 @@ namespace gluontest
 {
 	public static class FacebookJson
 	{
-		//public static FacebookPage DeserializePage(string json)
-		//{
-		//	var root = JObject.Parse(json);
-		//	var data = (JArray)root["data"];
-		//	throw new NotImplementedException();
-		//}
-
 		public static FacebookUser DeserializeUser(string json)
 		{
 			var root = JObject.Parse(json);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
 
@@ -8,7 +9,7 @@ namespace gluontest
 	public partial class PostsList : ContentPage
 	{
 		FacebookPagedCollection<FacebookPost> postsCollection;
-		FacebookPage currentPage;
+		//FacebookPage currentPage;
 
 		void btnBack_Clicked(object sender, System.EventArgs e)
 		{
@@ -20,7 +21,7 @@ namespace gluontest
 			InitializeComponent();
 
 			labelPostHeader.Text = headerText;
-			currentPage = page;
+			//currentPage = page;
 			postsCollection = posts;
 		}
 
@@ -28,7 +29,7 @@ namespace gluontest
 		{
 			return new Label
 			{
-				FontSize = 8,
+				FontSize = 10,
 				Text = post.Message ?? post.Story
 			};
 		}
@@ -38,18 +39,21 @@ namespace gluontest
 			base.OnAppearing();
 
 			var cursor = postsCollection;
-
+			var allPosts = new ObservableCollection<FacebookPost>();
+			listPosts.ItemsSource = allPosts;
+			
 			while (!cursor.IsEmpty)
 			{
-				foreach (var fbPage in cursor.Data)
+				foreach (var fbPost in cursor.Data)
 				{
-					stackPostList.Children.Add(CreatePostView(fbPage));
+					allPosts.Add(fbPost);
+					await fbPost.LoadInsights();
 				}
 				cursor = await cursor.Next();
 			}
 
 			// hide the loading indicator
-			labelLoading.IsVisible = false;
+			//labelLoading.IsVisible = false;
 		}
 	}
 }

@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace gluontest
 {
@@ -38,10 +41,24 @@ namespace gluontest
 		public string[] Permissions { get; set; }
 	}
 
-	public class FacebookPost : FacebookNode
+	public class FacebookPost : FacebookNode, INotifyPropertyChanged
 	{
 		/// <summary>
-		/// Message of the post
+		/// Body of the Facebook post. Either <see cref="Message"/> or <see cref="Story"/>, whichever is not null.
+		/// </summary>
+		public string Body => Message ?? Story;
+
+		public async Task LoadInsights()
+		{
+			this.InsightViewCount = $"{await App.Facebook.GetViewCount(this)} views";
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null) handler(this, new PropertyChangedEventArgs(nameof(InsightViewCount)));
+		}
+
+		public string InsightViewCount { get; private set; } = "# views...";
+
+		/// <summary>
+		/// Story of the post
 		/// </summary>
 		[JsonProperty("story")]
 		public string Story { get; set; }
@@ -57,6 +74,8 @@ namespace gluontest
 		/// </summary>
 		[JsonProperty("created_time")]
 		public string CreatedTime { get; set; }
+
+		public event PropertyChangedEventHandler PropertyChanged;
 	}
 
 	public class FacebookUser : FacebookNode
@@ -75,6 +94,48 @@ namespace gluontest
 			this.Name = name;
 			this.Id = id;
 		}
+	}
+
+	public class FacebookInsightValue
+	{
+		/// <summary>
+		/// Value of the insight
+		/// </summary>
+		[JsonProperty("value")]
+		public string Value { get; set; }
+	}
+
+	public class FacebookInsight : FacebookNode
+	{
+		/// <summary>
+		/// Name of the facebook user
+		/// </summary>
+		[JsonProperty("name")]
+		public string Name { get; set; }
+
+		/// <summary>
+		/// Period over which the insight was measured
+		/// </summary>
+		[JsonProperty("period")]
+		public string Period { get; set; }
+
+		/// <summary>
+		/// Insight title
+		/// </summary>
+		[JsonProperty("title")]
+		public string Title { get; set; }
+
+		/// <summary>
+		/// Insight description
+		/// </summary>
+		[JsonProperty("description")]
+		public string Description { get; set; }
+
+		/// <summary>
+		/// Value collection for this insight
+		/// </summary>
+		[JsonProperty("values")]
+		public List<FacebookInsightValue> Values { get; set; }
 	}
 
 	public class FbRequestPaging

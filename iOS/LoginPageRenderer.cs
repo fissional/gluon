@@ -18,7 +18,7 @@ namespace gluontest.iOS
 			{
 				var auth = new OAuth2Authenticator(
 					clientId: "1058962650819998",
-					scope: "public_profile+manage_pages+publish_pages+user_friends",
+					scope: string.Join("+", App.RequiredPermissions),
 					authorizeUrl: new Uri("https://m.facebook.com/dialog/oauth/"),
 					redirectUrl: new Uri("http://www.facebook.com/connect/login_success.html")
 				);

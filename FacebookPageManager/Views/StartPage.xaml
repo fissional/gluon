@@ -13,7 +13,7 @@
 			<Button Text="New Post" BorderWidth="1" />
 		</StackLayout>
 		<StackLayout x:Name="buttonStack" Orientation="Vertical" IsVisible="false" VerticalOptions="EndAndExpand">
-			<Button Text="Settings" BorderWidth="1" Clicked="btnSettings_Clicked" />
+			<Button Text="Settings" Style="{StaticResource ActionButton}" BorderWidth="1" Clicked="btnSettings_Clicked" />
 		</StackLayout>
 	</StackLayout>
 </local:BaseContentPage>

@@ -22,6 +22,10 @@ namespace gluontest
 
 		private void SelectPage(Button button, FacebookPage page)
 		{
+			if (button.Equals(SelectedPageButton))
+			{
+				App.NavigateOut();
+			}
 			if (SelectedPageButton != null)
 			{
 				SelectedPageButton.Style = null;
