@@ -9,9 +9,10 @@ namespace gluontest
 {
 	public class FacebookPagedCollection<T>
 	{
-		readonly List<T> m_storage;
-		readonly FbRequestPaging m_paging;
-		readonly string m_method;
+		List<T> m_allData;
+		List<T> m_storage;
+		FbRequestPaging m_paging;
+		string m_method;
 
 		/// <summary>
 		/// Collection of T that represents the result of a facebook API call
@@ -25,6 +26,11 @@ namespace gluontest
 
 		public FacebookPagedCollection(string data, string method)
 		{
+			Initialize(data, method);
+		}
+
+		private void Initialize(string data, string method)
+		{
 			var root = JObject.Parse(data);
 			m_storage = ((JArray)root["data"]).Select((JToken arg) => arg.ToObject<T>()).ToList();
 			m_paging = root["paging"]?.ToObject<FbRequestPaging>();
@@ -37,7 +43,7 @@ namespace gluontest
 		}
 
 		/// <summary>
-		/// Get the next page of data, if any
+		/// Get the next page of data, if any. Mutates the current collection
 		/// </summary>
 		public async Task<FacebookPagedCollection<T>> Next()
 		{
@@ -47,7 +53,28 @@ namespace gluontest
 			// request next page
 			var req = new FacebookApiRequest(new Uri(m_paging.UrlNext), m_method);
 			var nextData = await req.GetRawResult();
-			return new FacebookPagedCollection<T>(nextData, m_method);
+			this.Initialize(nextData, m_method);
+			return this;
+		}
+
+		/// <summary>
+		/// Load all pages of data for this collection
+		/// </summary>
+		/// <returns>The all pages.</returns>
+		public async Task<IList<T>> LoadAllPages()
+		{
+			if (m_allData == null)
+			{
+				m_allData = new List<T>();
+			}
+
+			while (!IsEmpty)
+			{
+				m_allData.AddRange(Data);
+				await Next();
+			}
+
+			return m_allData;
 		}
 	}
 }

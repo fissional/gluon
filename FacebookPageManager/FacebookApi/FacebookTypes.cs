@@ -57,10 +57,14 @@ namespace gluontest
 			FirePropertyChanged(nameof(InsightViewCount));
 		}
 
+		/// <summary>
+		/// Load the likes for this post
+		/// </summary>
+		/// <returns>The likes.</returns>
 		public async Task LoadLikes()
 		{
 			var allLikes = await App.Facebook.GetLikes(this);
-			var cursor = allLikes;
+			this.Likes = await allLikes.LoadAllPages();
 
 			FirePropertyChanged(nameof(Likes));
 			FirePropertyChanged(nameof(LikeCount));
