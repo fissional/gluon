@@ -55,7 +55,6 @@
     <Compile Include="FacebookApi\FacebookApi.cs" />
     <Compile Include="FacebookApi\FacebookPagedCollection.cs" />
     <Compile Include="FacebookApi\FacebookApiRequest.cs" />
-    <Compile Include="FacebookApi\FacebookJson.cs" />
     <Compile Include="FacebookApi\FacebookTypes.cs" />
     <Compile Include="Views\PagesList.xaml.cs">
       <DependentUpon>PagesList.xaml</DependentUpon>

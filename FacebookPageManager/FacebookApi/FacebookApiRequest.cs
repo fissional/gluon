@@ -13,6 +13,17 @@ namespace gluontest
 		HttpWebRequest m_request;
 
 		/// <summary>
+		/// Deserialize the specified json.
+		/// </summary>
+		/// <param name="json">json string representing an instance of an object of type T</param>
+		/// <typeparam name="T">The type to deserialize the provided JSON to</typeparam>
+		static T DeserializeJson<T>(string json)
+		{
+			var root = JObject.Parse(json);
+			return root.ToObject<T>();
+		}
+
+		/// <summary>
 		/// Create a new Facebook API request
 		/// </summary>
 		/// <param name="accessToken">access token which is required to call the API</param>
@@ -59,7 +70,7 @@ namespace gluontest
 			m_request.Method = method;
 		}
 
-		public async Task<T> GetResult<T>(Func<string, T> converter)
+		public async Task<T> GetResult<T>()
 		{
 			// get the HTTP result
 			var response =
@@ -68,7 +79,7 @@ namespace gluontest
 			var fullResult = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
 
 			// convert result
-			return converter(fullResult);
+			return DeserializeJson<T>(fullResult);
 		}
 
 		public async Task<FacebookPagedCollection<T>> GetResults<T>()

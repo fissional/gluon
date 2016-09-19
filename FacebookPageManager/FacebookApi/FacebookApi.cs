@@ -97,7 +97,7 @@ namespace gluontest
 		public async Task<FacebookUser> GetMe()
 		{
 			var req = new FacebookApiRequest(m_token, "me");
-			var result = await req.GetResult(FacebookJson.DeserializeUser);
+			var result = await req.GetResult<FacebookUser>();
 			return result;
 		}
 	}
