@@ -5,7 +5,7 @@
 	</ContentPage.Padding>
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0">
-			<StackLayout VerticalOptions="Start" Padding="12, 32, 12, 0" Orientation="Horizontal">
+			<StackLayout VerticalOptions="Start" Padding="16, 24, 0, 0" Orientation="Horizontal">
 				<Label x:Name="labelPostHeader" Text="Posts" />
 			</StackLayout>
 			<ListView x:Name="listPosts" Style="{StaticResource ApiItemList}">

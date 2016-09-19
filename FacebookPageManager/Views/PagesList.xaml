@@ -4,8 +4,8 @@
         <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
 	</ContentPage.Padding>
 	<ContentPage.Content>
-		<StackLayout Padding="0">
-			<StackLayout VerticalOptions="Start" Padding="16, 32, 0, 0" >
+		<StackLayout Padding="0" Margin="0">
+			<StackLayout VerticalOptions="Start" Padding="16, 24, 0, 0" >
 				<Label Text="Select a Facebook Page:" />
 				<Label x:Name="labelLoading" Text="Loading Pages..." Margin="6" FontSize="14" />
 			</StackLayout>
