@@ -142,7 +142,7 @@ namespace gluontest
 			if (publishDate.HasValue)
 			{
 				var dateParamName = publishDate.Value > DateTime.Now ? "scheduled_publish_time" : "backdated_time";
-				requestParameters[dateParamName] = publishDate.Value.ToString();
+				requestParameters[dateParamName] = publishDate.Value.ToString("yyyy-MM-ddTHH:mm:ssZ");
 			}
 			// this operation requires a page access token for this page
 			var req = new FacebookApiRequest(page.AccessToken, "POST", page.Id, "feed", requestParameters);
