@@ -141,8 +141,16 @@ namespace gluontest
 			};
 			if (publishDate.HasValue)
 			{
-				var dateParamName = publishDate.Value > DateTime.Now ? "scheduled_publish_time" : "backdated_time";
-				requestParameters[dateParamName] = publishDate.Value.ToString("yyyy-MM-ddTHH:mm:ssZ");
+				if (publishDate.Value > DateTime.Now)
+				{
+					requestParameters["scheduled_publish_time"] = 
+						(publishDate.Value - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds.ToString();
+					requestParameters["published"] = "0";
+				}
+				else
+				{
+					requestParameters["backdated_time"] = publishDate.Value.ToString("yyyy-MM-ddTHH:mm:ssZ");
+				}
 			}
 			// this operation requires a page access token for this page
 			var req = new FacebookApiRequest(page.AccessToken, "POST", page.Id, "feed", requestParameters);
