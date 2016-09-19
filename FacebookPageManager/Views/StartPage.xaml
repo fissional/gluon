@@ -12,7 +12,7 @@
 			<Label Text="Add" />
 			<Button Text="New Post" BorderWidth="1" Clicked="CreatePost_Clicked" />
 		</StackLayout>
-		<StackLayout x:Name="buttonStack" Orientation="Vertical" VerticalOptions="EndAndExpand">
+		<StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
 			<Button Text="Select Page" Style="{StaticResource ActionButton}" BorderWidth="1" Clicked="btnSettings_Clicked" />
 		</StackLayout>
 	</StackLayout>

@@ -13,12 +13,24 @@
 			</StackLayout>
 			<StackLayout VerticalOptions="StartAndExpand" Margin="12, 4">
 				<Label>Post Contents:</Label>
-				<Editor x:Name="editorPostBody" HeightRequest="100">
-				</Editor>
-				<Label></Label>
-				<Label>Post Date:</Label><DatePicker x:Name="datePost" PropertyChanged="datePost_PropertyChanged" />
+				<StackLayout Margin="0" Padding="1" BackgroundColor="Black">
+					<Editor x:Name="editorPostBody" HeightRequest="100" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Label VerticalOptions="Center" WidthRequest="100">Published</Label>
+					<Switch x:Name="switchPublished" Toggled="switchPublish_Toggled" IsToggled="true" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Label VerticalOptions="Center" WidthRequest="100">Specify Date</Label>
+					<Switch x:Name="switchSpecifyDate" Toggled="switchDate_Toggled" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal" VerticalOptions="Center">
+					<Label VerticalOptions="Center" WidthRequest="100">Post Date:</Label>
+					<DatePicker x:Name="datePost" PropertyChanged="datePost_PropertyChanged" IsEnabled="false" />
+					<TimePicker x:Name="timePost" PropertyChanged="datePost_PropertyChanged" IsEnabled="false" />
+				</StackLayout>
 				<Label x:Name="labelUnpublished" TextColor="Red" IsVisible="false">
-					* unpublished post
+					* this post will not be published yet
 				</Label>
 			</StackLayout>
 			<StackLayout VerticalOptions="End" Orientation="Horizontal">
