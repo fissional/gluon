@@ -14,7 +14,10 @@
 						<ViewCell>
 							<StackLayout VerticalOptions="CenterAndExpand">
 								<Label Style="{StaticResource ListMajorItem}" VerticalOptions="Start" LineBreakMode="TailTruncation" Text="{Binding Path=Body}" />
-								<Label Style="{StaticResource ListMinorItem}" VerticalOptions="End" Text="{Binding InsightViewCount}" />
+								<StackLayout VerticalOptions="End" Orientation="Horizontal">
+									<Label Style="{StaticResource ListMinorItem}" VerticalOptions="End" HorizontalOptions="Start" Text="{Binding InsightViewCount}" />
+									<Label Style="{StaticResource ListMinorItem}" VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="{Binding CreatedTime}" />
+								</StackLayout>
 							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
