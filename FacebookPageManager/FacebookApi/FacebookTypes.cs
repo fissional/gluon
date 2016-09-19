@@ -48,14 +48,42 @@ namespace gluontest
 		/// </summary>
 		public string Body => Message ?? Story;
 
+		/// <summary>
+		/// Load insight data for this post
+		/// </summary>
 		public async Task LoadInsights()
 		{
 			this.InsightViewCount = $"{await App.Facebook.GetViewCount(this)} views";
-			PropertyChangedEventHandler handler = PropertyChanged;
-			if (handler != null) handler(this, new PropertyChangedEventArgs(nameof(InsightViewCount)));
+			FirePropertyChanged(nameof(InsightViewCount));
 		}
 
+		public async Task LoadLikes()
+		{
+			var allLikes = await App.Facebook.GetLikes(this);
+			var cursor = allLikes;
+
+			FirePropertyChanged(nameof(Likes));
+			FirePropertyChanged(nameof(LikeCount));
+		}
+
+		/// <summary>
+		/// Number of people this post has reached (page posts only)
+		/// </summary>
 		public string InsightViewCount { get; private set; } = "# views...";
+
+		/// <summary>
+		/// Number of people that have liked this post
+		/// </summary>
+		public string LikeCount
+		{
+			get
+			{
+				if (Likes == null)
+					return "# of likes...";
+				return $"{Likes.Count} likes";
+			}
+		}
+		private IList<FacebookUser> Likes;
 
 		/// <summary>
 		/// Story of the post
@@ -76,6 +104,15 @@ namespace gluontest
 		public string CreatedTime { get; set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;
+		private void FirePropertyChanged(string propertyName)
+		{
+			// safe way to deal w/ this event getting changed while we fire it
+			PropertyChangedEventHandler handler = PropertyChanged;
+			if (handler != null)
+			{
+				handler(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
 	}
 
 	public class FacebookUser : FacebookNode
