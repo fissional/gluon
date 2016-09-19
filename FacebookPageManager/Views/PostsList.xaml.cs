@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
@@ -9,25 +8,25 @@ namespace gluontest
 	public partial class PostsList : ContentPage
 	{
 		FacebookPagedCollection<FacebookPost> postsCollection;
-		FacebookPost selectedPost;
-		//FacebookPage currentPage;
 
-		void btnBack_Clicked(object sender, System.EventArgs e)
+		void btnBack_Clicked(object sender, EventArgs e)
 		{
 			App.NavigateOut();
 		}
 
-		void Handle_PostSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+		void btnDetails_Clicked(object sender, EventArgs e)
 		{
-			selectedPost = (FacebookPost)e.SelectedItem;
+			if (listPosts.SelectedItem == null)
+			{
+				return;
+			}
 		}
 
-		public PostsList(string headerText, FacebookPage page, FacebookPagedCollection<FacebookPost> posts)
+		public PostsList(string headerText, FacebookPagedCollection<FacebookPost> posts)
 		{
 			InitializeComponent();
 
 			labelPostHeader.Text = headerText;
-			//currentPage = page;
 			postsCollection = posts;
 		}
 

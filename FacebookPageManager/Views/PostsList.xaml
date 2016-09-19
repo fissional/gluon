@@ -26,8 +26,9 @@
 					</ListView.ItemTemplate>
 				</ListView>
 			</StackLayout>
-			<StackLayout VerticalOptions="End">
-				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" />
+			<StackLayout VerticalOptions="End" Orientation="Horizontal">
+				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" WidthRequest="140" HorizontalOptions="StartAndExpand" />
+				<Button Text="Post Details &gt;" Style="{StaticResource ActionButton}" Clicked="btnDetails_Clicked" WidthRequest="140" HorizontalOptions="End" />
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
