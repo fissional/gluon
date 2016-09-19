@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 namespace gluontest
@@ -10,6 +8,15 @@ namespace gluontest
 		public CreatePost()
 		{
 			InitializeComponent();
+		}
+
+		private void btnBack_Clicked(object sender, EventArgs e)
+		{
+			App.NavigateOut();
+		}
+
+		private void btnCreatePost_Clicked(object sender, EventArgs e)
+		{
 		}
 	}
 }

@@ -1,5 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gluontest.CreatePost">
+	<ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+	</ContentPage.Padding>
 	<ContentPage.Content>
+		<StackLayout Padding="0" Margin="0">
+			<StackLayout VerticalOptions="StartAndExpand">
+			</StackLayout>
+			<StackLayout VerticalOptions="End" Orientation="Horizontal">
+				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" WidthRequest="140" HorizontalOptions="StartAndExpand" />
+				<Button Text="Create Post &gt;" Style="{StaticResource ActionButton}" Clicked="btnDetails_Clicked" WidthRequest="140" HorizontalOptions="End" />
+			</StackLayout>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
