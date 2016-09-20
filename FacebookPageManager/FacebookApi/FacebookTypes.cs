@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -106,6 +107,35 @@ namespace gluontest
 		/// </summary>
 		[JsonProperty("created_time")]
 		public string CreatedTime { get; set; }
+
+		[JsonProperty("scheduled_publish_time")]
+		public string ScheduledPublishTime { get; set; }
+
+		private string m_postTime;
+		/// <summary>
+		/// Either the scheduled post time, or created time of the post
+		/// </summary>
+		public string PostTime
+		{
+			get
+			{
+				if (m_postTime == null)
+				{
+					int secondsAfterEpoch = 0;
+					if (string.IsNullOrWhiteSpace(ScheduledPublishTime) || !Int32.TryParse(ScheduledPublishTime, out secondsAfterEpoch))
+					{
+						// use post time which isn't a unix date
+						m_postTime = DateTime.Parse(CreatedTime).ToString("yyyy/MM/dd HH:mm");
+					}
+					else
+					{
+						// convert from unix date
+						m_postTime = (new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(secondsAfterEpoch)).ToString("yyyy/MM/dd HH:mm");
+					}
+				}
+				return m_postTime;
+			}
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void FirePropertyChanged(string propertyName)
