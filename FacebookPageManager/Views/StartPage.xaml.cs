@@ -36,7 +36,7 @@ namespace gluontest
 		private async Task InitPages()
 		{
 			pickerPosts.Items.Clear();
-			pickerPosts.Items.Add("Click to select page");
+			pickerPosts.Items.Add("Select a Facebook Page");
 			pickerPosts.SelectedIndex = 0;
 
 			var pagedPageColleciton = await App.Facebook.GetPages(await App.Facebook.GetMe());
