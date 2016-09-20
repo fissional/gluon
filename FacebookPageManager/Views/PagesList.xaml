@@ -5,7 +5,7 @@
 	</ContentPage.Padding>
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0">
-			<StackLayout VerticalOptions="Start" Padding="16, 24, 0, 0" >
+			<StackLayout VerticalOptions="Start" Style="{StaticResource InnerStackBody}" >
 				<Label Text="Select a Facebook Page:" />
 				<Label x:Name="labelLoading" Text="Loading Pages..." Margin="6" FontSize="14" />
 			</StackLayout>

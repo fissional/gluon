@@ -5,7 +5,7 @@
 	</ContentPage.Padding>
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0">
-			<StackLayout VerticalOptions="Start" Padding="16, 24, 0, 0" Orientation="Vertical">
+			<StackLayout VerticalOptions="Start" Style="{StaticResource InnerStackBody}" Orientation="Vertical">
 				<Label x:Name="labelPostHeader" Text="Posts" />
 				<Label x:Name="labelEmpty" Text="No posts found :(" IsVisible="false" Margin="6" FontSize="14" />
 			</StackLayout>

@@ -8,10 +8,10 @@
 	</ContentPage.Padding>
 	<ContentPage.Content>
 		<StackLayout Margin="0" Padding="0">
-			<StackLayout Padding="16, 24, 0, 0" VerticalOptions="Start">
+			<StackLayout Style="{StaticResource InnerStackBody}" VerticalOptions="Start">
 				<Label>Post Details</Label>
 			</StackLayout>
-			<StackLayout Padding="20, 8, 0, 0" VerticalOptions="StartAndExpand">
+			<StackLayout Padding="20, 8, 20, 0" VerticalOptions="StartAndExpand">
 				<Label Style="{StaticResource DetailLabel}">Post Body</Label>
 				<Label Style="{StaticResource DetailValue}" Text="{Binding Body}" />
 			</StackLayout>
