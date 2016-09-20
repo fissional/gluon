@@ -5,7 +5,8 @@ namespace gluontest
 {
 	public partial class CreatePost : ContentPage
 	{
-		DateTime previousDate = DateTime.Now;
+		private DateTime m_previousDate = DateTime.Now;
+
 		private DateTime SelectedDate
 		{
 			get
@@ -52,7 +53,7 @@ namespace gluontest
 
 			// indicate this post will be unpublished if the publication date is after today
 			labelUnpublished.IsVisible = SelectedDate > DateTime.Now;
-			previousDate = SelectedDate;
+			m_previousDate = SelectedDate;
 		}
 
 		private void switchDate_Toggled(object sender, ToggledEventArgs e)
@@ -63,9 +64,9 @@ namespace gluontest
 			if (e.Value)
 			{
 				// if the date pickers become enabled, display the previously selected date
-				previousDate = SelectedDate;
-				datePost.Date = previousDate.Date;
-				timePost.Time = previousDate - previousDate.Date;
+				m_previousDate = SelectedDate;
+				datePost.Date = m_previousDate.Date;
+				timePost.Time = m_previousDate - m_previousDate.Date;
 			}
 			else
 			{
@@ -86,8 +87,8 @@ namespace gluontest
 			if (!e.Value)
 			{
 				switchSpecifyDate.IsToggled = false;
-				datePost.Date = previousDate.Date;
-				timePost.Time = previousDate - previousDate.Date;
+				datePost.Date = m_previousDate.Date;
+				timePost.Time = m_previousDate - m_previousDate.Date;
 			}
 		}
 	}

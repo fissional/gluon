@@ -9,7 +9,7 @@ namespace gluontest
 {
 	public partial class PagesList : ContentPage
 	{
-		private Button SelectedPageButton;
+		private Button m_selectedPageButton;
 
 		public PagesList()
 		{
@@ -23,17 +23,17 @@ namespace gluontest
 
 		private void SelectPage(Button button, FacebookPage page)
 		{
-			if (button.Equals(SelectedPageButton))
+			if (button.Equals(m_selectedPageButton))
 			{
 				App.NavigateOut();
 			}
-			if (SelectedPageButton != null)
+			if (m_selectedPageButton != null)
 			{
-				SelectedPageButton.Style = null;
+				m_selectedPageButton.Style = null;
 			}
 
-			SelectedPageButton = button;
-			SelectedPageButton.Style = (Style)Application.Current.Resources["SelectedButton"];
+			m_selectedPageButton = button;
+			m_selectedPageButton.Style = (Style)Application.Current.Resources["SelectedButton"];
 			App.FacebookSettings.CurrentPage = page;
 		}
 
@@ -45,8 +45,8 @@ namespace gluontest
 			newButton.Clicked += (sender, e) => SelectPage((Button)sender, page);
 			if (App.FacebookSettings.CurrentPage != null && App.FacebookSettings.CurrentPage.Id == page.Id)
 			{
-				SelectedPageButton = newButton;
-				SelectedPageButton.Style = (Style)Application.Current.Resources["SelectedButton"];
+				m_selectedPageButton = newButton;
+				m_selectedPageButton.Style = (Style)Application.Current.Resources["SelectedButton"];
 			}
 			return newButton;
 		}

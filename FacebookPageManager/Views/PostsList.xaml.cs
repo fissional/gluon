@@ -7,14 +7,14 @@ namespace gluontest
 {
 	public partial class PostsList : ContentPage
 	{
-		FacebookPagedCollection<FacebookPost> postsCollection;
+		FacebookPagedCollection<FacebookPost> m_postsCollection;
 
 		public PostsList(string headerText, FacebookPagedCollection<FacebookPost> posts)
 		{
 			InitializeComponent();
 
 			labelPostHeader.Text = headerText;
-			postsCollection = posts;
+			m_postsCollection = posts;
 		}
 
 		private void btnBack_Clicked(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace gluontest
 				return;
 			}
 
-			var cursor = postsCollection;
+			var cursor = m_postsCollection;
 			var allPosts = new ObservableCollection<FacebookPost>();
 			listPosts.ItemsSource = allPosts;
 			

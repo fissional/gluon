@@ -6,12 +6,13 @@ namespace gluontest
 {
 	public partial class StartPage : BaseContentPage
 	{
+		IList<FacebookPage> m_userPages;
+
 		public StartPage()
 		{
 			InitializeComponent();
 		}
 
-		IList<FacebookPage> m_userPages;
 		protected async override void OnAppearing()
 		{
 			base.OnAppearing();
