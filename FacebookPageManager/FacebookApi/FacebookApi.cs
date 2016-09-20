@@ -69,7 +69,10 @@ namespace gluontest
 		/// <param name="page">Facebook user object</param>
 		public async Task<FacebookPagedCollection<FacebookPost>> GetUnpublishedPosts(FacebookPage page)
 		{
-			var req = new FacebookApiRequest(m_token, page.Id, "promotable_posts", new Dictionary<string, string> { { "is_published", "false" } });
+			var req = new FacebookApiRequest(m_token, page.Id, "promotable_posts", new Dictionary<string, string> { 
+				{ "is_published", "false" }, 
+				{ "fields", "scheduled_publish_time,message,id,created_time,is_published" } 
+			});
 			var result = await req.GetResults<FacebookPost>();
 			return result;
 		}
