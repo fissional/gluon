@@ -123,12 +123,32 @@ namespace gluontest
 		/// <returns>string returned from the API request</returns>
 		public async Task<string> GetRawResult()
 		{
-			// get the HTTP result
-			var response =
-				await Task<WebResponse>.Factory.FromAsync(m_request.BeginGetResponse, m_request.EndGetResponse, null);
-			// read the full response stream
-			var rawResult = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
-			return rawResult;
+			try
+			{
+				// get the HTTP result
+				var response =
+					await Task<WebResponse>.Factory.FromAsync(m_request.BeginGetResponse, m_request.EndGetResponse, null);
+				// read the full response stream
+				var rawResult = await new StreamReader(response.GetResponseStream()).ReadToEndAsync();
+				return rawResult;
+			}
+			catch (WebException e)
+			{
+				throw new FacebookApiException(e, await CreateFromException(e));
+			}
+		}
+
+		/// <summary>
+		/// Create a new error object from a thrown web exception
+		/// </summary>
+		/// <returns>FacebookError object with the data contained in the provided WebException</returns>
+		/// <param name="ex">WebException thrown from an API call</param>
+		private async static Task<FacebookError> CreateFromException(WebException ex)
+		{
+			var errorResponse = await new StreamReader(ex.Response.GetResponseStream()).ReadToEndAsync();
+			var errorJson = JObject.Parse(errorResponse);
+			var newError = errorJson["error"].ToObject<FacebookError>();
+			return newError;
 		}
 	}
 }

@@ -27,20 +27,28 @@ namespace gluontest
 
 		private async void btnCreatePost_Clicked(object sender, EventArgs e)
 		{
-			var newPostId = await App.Facebook.CreatePost(
-				App.FacebookSettings.CurrentPage, 
-				editorPostBody.Text, 
-				switchPublished.IsToggled, switchSpecifyDate.IsToggled ? (DateTime?)SelectedDate : null);
+			try
+			{
+				var newPostId = await App.Facebook.CreatePost(
+					App.FacebookSettings.CurrentPage,
+					editorPostBody.Text,
+					switchPublished.IsToggled, switchSpecifyDate.IsToggled ? (DateTime?)SelectedDate : null);
 
-			if (newPostId != null)
-			{
-				// jump to post details
-				App.NavigateOut();
-				App.Navigate(new PostDetails(await App.Facebook.GetObject<FacebookPost>(newPostId)));
+				if (newPostId != null)
+				{
+					// jump to post details
+					App.NavigateOut();
+					App.Navigate(new PostDetails(await App.Facebook.GetObject<FacebookPost>(newPostId)));
+				}
+				else
+				{
+					// display an error because something went wrong
+					await DisplayAlert("Post Not Created", "The post was not created due to an unknown error. Please try again.", "OK");
+				}
 			}
-			else
+			catch (FacebookApiException fx)
 			{
-				// display an error because something went wrong
+				await DisplayAlert(fx.Error.ErrorUserTitle, fx.Error.ErrorUserMessage, "OK");
 			}
 		}
 

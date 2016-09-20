@@ -209,6 +209,54 @@ namespace gluontest
 		public List<FacebookInsightValue> Values { get; set; }
 	}
 
+	/// <summary>
+	/// Error object returned from failed API calls
+	/// </summary>
+	public class FacebookError
+	{
+		/// <summary>
+		/// Error type
+		/// </summary>
+		[JsonProperty("type")]
+		public string Type { get; set; }
+
+		/// <summary>
+		/// General error message
+		/// </summary>
+		[JsonProperty("message")]
+		public string Message { get; set; }
+
+		/// <summary>
+		/// Error code
+		/// </summary>
+		[JsonProperty("code")]
+		public int Code { get; set; }
+
+		/// <summary>
+		/// Error subcode
+		/// </summary>
+		[JsonProperty("error_subcode")]
+		public int SubCode { get; set; }
+
+		/// <summary>
+		/// presumably this means it might work if you try it again
+		/// </summary>
+		[JsonProperty("is_transient")]
+		public bool IsTransient { get; set; }
+
+		/// <summary>
+		/// Error title specific to the API action
+		/// </summary>
+		[JsonProperty("error_user_title")]
+		public string ErrorUserTitle { get; set; }
+
+		/// <summary>
+		/// Error message specific to the API action
+		/// </summary>
+		[JsonProperty("error_user_msg")]
+		public string ErrorUserMessage { get; set; }
+	}
+
 	public class FbRequestPaging
 	{
 		public FbRequestPagingCursors cursors { get; set; }
