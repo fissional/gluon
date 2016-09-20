@@ -14,6 +14,7 @@
 			<StackLayout Padding="20, 8, 20, 0" VerticalOptions="StartAndExpand">
 				<Label Style="{StaticResource DetailLabel}">Post Body</Label>
 				<Label Style="{StaticResource DetailValue}" Text="{Binding Body}" />
+				<Label Style="{StaticResource DetailValue}" Text="{Binding LikeCount}" />
 			</StackLayout>
 			<StackLayout VerticalOptions="End">
 				<Button Text="&lt; Back" Style="{StaticResource ActionButton}" Clicked="btnBack_Clicked" />

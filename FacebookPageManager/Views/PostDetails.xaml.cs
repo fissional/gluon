@@ -16,6 +16,12 @@ namespace gluontest
 			this.BindingContext = m_post;
 		}
 
+		protected async override void OnAppearing()
+		{
+			base.OnAppearing();
+			await m_post.LoadLikes();
+		}
+
 		private void btnBack_Clicked(object sender, EventArgs e)
 		{
 			App.NavigateOut();

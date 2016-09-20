@@ -85,7 +85,7 @@ namespace gluontest
 			{
 				if (Likes == null)
 					return "# of likes...";
-				return $"{Likes.Count} likes";
+				return $"{Likes.Count} {Likes.Count == 1 ? "person likes" : "people like"} this";
 			}
 		}
 		private IList<FacebookUser> Likes;
