@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
 namespace gluontest
 {
 	public partial class StartPage : BaseContentPage
@@ -8,7 +11,8 @@ namespace gluontest
 			InitializeComponent();
 		}
 
-		protected override void OnAppearing()
+		IList<FacebookPage> m_userPages;
+		protected async override void OnAppearing()
 		{
 			base.OnAppearing();
 
@@ -17,31 +21,51 @@ namespace gluontest
 			{
 				if (App.FacebookSettings.CurrentPage != null)
 				{
-					labelPageHeader.Text = App.FacebookSettings.CurrentPage.Name;
-					stackPageActions.IsVisible = true;
-
-					foreach (var child in stackPageActions.Children)
-					{
-						if (child is Button)
-						{
-							child.IsEnabled = true;
-						}
-					}
+					// enable the actions UI if a page is selected
+					SetActionState(true);
 				}
 				else
 				{
-					foreach (var child in stackPageActions.Children)
-					{
-						if (child is Button)
-						{
-							child.IsEnabled = false;
-						}
-					}
+					await InitPages();
+					SetActionState(false);
 				}
-
-				// show the UI if we've logged in
-				//this.buttonStack.IsVisible = true;
 			}
+		}
+
+		private async Task InitPages()
+		{
+			pickerPosts.Items.Clear();
+			pickerPosts.Items.Add("Click to select page");
+			pickerPosts.SelectedIndex = 0;
+
+			var pagedPageColleciton = await App.Facebook.GetPages(await App.Facebook.GetMe());
+			m_userPages = await pagedPageColleciton.LoadAllPages();
+			foreach (var page in m_userPages)
+			{
+				pickerPosts.Items.Add(page.Name);
+			}
+
+			m_userPages.Insert(0, null);
+		}
+
+		private void SetActionState(bool isEnabled)
+		{
+			foreach (var child in stackPageActions.Children)
+			{
+				if (child is Button)
+				{
+					child.IsEnabled = isEnabled;
+				}
+			}
+		}
+
+		private void pickerPosts_SelectedIndexChanged(object sender, System.EventArgs e)
+		{
+			if (pickerPosts.SelectedIndex > 0)
+				App.FacebookSettings.CurrentPage = m_userPages[pickerPosts.SelectedIndex];
+			else
+				App.FacebookSettings.CurrentPage = null;
+			SetActionState(App.FacebookSettings.CurrentPage != null);
 		}
 
 		private void btnSettings_Clicked(object sender, System.EventArgs e)

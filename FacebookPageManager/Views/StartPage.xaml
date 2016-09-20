@@ -4,7 +4,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:local="clr-namespace:gluontest" x:Class="gluontest.StartPage">
 	<StackLayout Padding="0">
-		<Label x:Name="labelPageHeader" Text="No page selected" Style="{StaticResource HeaderLabel}" />
+		<Picker x:Name="pickerPosts" SelectedIndexChanged="pickerPosts_SelectedIndexChanged" />
 		<StackLayout x:Name="stackPageActions" VerticalOptions="Start">
 			<Label Text="View" />
 			<Button Text="Page Posts" BorderWidth="1" Clicked="PagePosts_Clicked" />
@@ -12,7 +12,7 @@
 			<Label Text="Add" />
 			<Button Text="New Post" BorderWidth="1" Clicked="CreatePost_Clicked" />
 		</StackLayout>
-		<StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
+		<StackLayout Orientation="Vertical" IsVisible="false" VerticalOptions="EndAndExpand">
 			<Button Text="Select Page" Style="{StaticResource ActionButton}" BorderWidth="1" Clicked="btnSettings_Clicked" />
 		</StackLayout>
 	</StackLayout>
