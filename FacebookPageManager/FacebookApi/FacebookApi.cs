@@ -103,6 +103,18 @@ namespace gluontest
 		}
 
 		/// <summary>
+		/// Gets all the attachments on a Facebook post
+		/// </summary>
+		/// <returns>The post attachments.</returns>
+		/// <param name="post">Facebook post</param>
+		public async Task<FacebookPagedCollection<FacebookAttachment>> GetPostAttachments(FacebookPost post)
+		{
+			var req = new FacebookApiRequest(m_token, post.Id, $"attachments", null);
+			var result = await req.GetResults<FacebookAttachment>();
+			return result;
+		}
+
+		/// <summary>
 		/// Get the number of people this post has reached. Page posts only
 		/// </summary>
 		/// <param name="post">Facebook post for which to get reach</param>

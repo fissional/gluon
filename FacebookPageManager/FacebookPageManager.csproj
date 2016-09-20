@@ -78,6 +78,7 @@
       <DependentUpon>PostDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="FacebookApi\FacebookApiException.cs" />
+    <Compile Include="FacebookApi\FacebookMediaTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

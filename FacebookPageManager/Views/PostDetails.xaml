@@ -12,8 +12,8 @@
 				<Label>Post Details</Label>
 			</StackLayout>
 			<StackLayout Padding="20, 8, 20, 0" VerticalOptions="StartAndExpand">
-				<Label Style="{StaticResource DetailLabel}">Post Body</Label>
-				<Label Style="{StaticResource DetailValue}" Text="{Binding Body}" />
+				<Image x:Name="imageAttach" />
+				<Label Style="{StaticResource DetailValue}" FontSize="13" Text="{Binding Body}" />
 				<Label Style="{StaticResource DetailValue}" Text="{Binding LikeCount}" />
 			</StackLayout>
 			<StackLayout VerticalOptions="End">
