@@ -22,12 +22,12 @@
 				<Setter Property="SeparatorVisibility" Value="None" />
 			</Style>
 			<Style x:Key="ListMajorItem" TargetType="Label">
-				<Setter Property="FontSize" Value="11" />
+				<Setter Property="FontSize" Value="12" />
 				<Setter Property="HeightRequest" Value="36" />
 			</Style>
 			<Style x:Key="ListMinorItem" TargetType="Label">
 				<Setter Property="TextColor" Value="#888" />
-				<Setter Property="FontSize" Value="11" />
+				<Setter Property="FontSize" Value="12" />
 				<Setter Property="VerticalOptions" Value="End" />
 			</Style>
 
