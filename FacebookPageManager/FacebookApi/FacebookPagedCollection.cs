@@ -48,7 +48,11 @@ namespace gluontest
 		public async Task<FacebookPagedCollection<T>> Next()
 		{
 			if (String.IsNullOrWhiteSpace(m_paging.UrlNext))
-				return new FacebookPagedCollection<T>();
+			{
+				m_storage = new List<T>();
+				m_paging.UrlNext = null;
+				return this;
+			}
 
 			// request next page
 			var req = new FacebookApiRequest(new Uri(m_paging.UrlNext), m_method);
