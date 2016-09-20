@@ -8,7 +8,7 @@ namespace gluontest
 		{
 			base.OnAppearing();
 
-			if (!App.IsLoggedIn)
+			if (!App.IsLoggedIn && (Navigation.ModalStack.Count == 0 || !(Navigation.ModalStack[0] is LoginPage)))
 			{ 
 				Navigation.PushModalAsync(new LoginPage());
 			}

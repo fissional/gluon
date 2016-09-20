@@ -9,7 +9,7 @@ namespace gluontest
 		/// Saved authorization token for the Facebook API
 		/// </summary>
 		// TODO: this should be stored somewhere in persistent memory so the app can load it on launch
-		public readonly string Token = "";
+		public readonly string Token = null;
 
 		/// <summary>
 		/// The Facebook Page the app is currently managing
@@ -19,6 +19,9 @@ namespace gluontest
 
 	public partial class App : Application
 	{
+		/// <summary>
+		/// Facebook API permissions required to run this application
+		/// </summary>
 		public static readonly string[] RequiredPermissions = new string[] 
 		{
 			"manage_pages",
@@ -71,7 +74,11 @@ namespace gluontest
 		public static void SaveToken(string token)
 		{
 			Facebook = new FacebookApi(token);
+			OnLoggedIn?.Invoke();
 		}
+
+		public delegate void LoggedInHandler();
+		public static event LoggedInHandler OnLoggedIn;
 
 		public static Action SuccessfulLoginAction
 		{

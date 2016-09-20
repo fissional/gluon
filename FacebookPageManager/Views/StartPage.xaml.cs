@@ -20,16 +20,26 @@ namespace gluontest
 			// show the Facebook controls, if logged in
 			if (App.IsLoggedIn)
 			{
-				if (App.FacebookSettings.CurrentPage != null)
-				{
-					// enable the actions UI if a page is selected
-					SetActionState(true);
-				}
-				else
-				{
-					await InitPages();
-					SetActionState(false);
-				}
+				await InitPage();
+			}
+			else
+			{
+				// queue up the init to happen after the app is logged in
+				App.OnLoggedIn += async () => { await InitPage(); };
+			}
+		}
+
+		private async Task InitPage()
+		{
+			if (App.FacebookSettings.CurrentPage != null)
+			{
+				// enable the actions UI if a page is selected
+				SetActionState(true);
+			}
+			else
+			{
+				await InitPages();
+				SetActionState(false);
 			}
 		}
 
