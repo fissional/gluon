@@ -10,7 +10,7 @@ namespace gluontest
 {
 	public class FacebookApiRequest
 	{
-		HttpWebRequest m_request;
+		readonly HttpWebRequest m_request;
 
 		/// <summary>
 		/// Deserialize the specified json.
@@ -44,6 +44,14 @@ namespace gluontest
 		{
 		}
 
+		/// <summary>
+		/// Create a new Facebook API request
+		/// </summary>
+		/// <param name="accessToken">access token which is required to call the API</param>
+		/// <param name="method">HTTP method</param>
+		/// <param name="objectName">name of the graph API object</param>
+		/// <param name="edgeName">edge name</param>
+		/// <param name="parameters">additional Facebook API parameters</param>
 		public FacebookApiRequest(string accessToken, string method, string objectName, string edgeName, Dictionary<string, string> parameters)
 		{
 			var url = new StringBuilder($"https://graph.facebook.com/{objectName}");
@@ -64,12 +72,22 @@ namespace gluontest
 			m_request.Method = method;
 		}
 
+		/// <summary>
+		/// Create a new Facebook API request
+		/// </summary>
+		/// <param name="uri">full URI of the API request</param>
+		/// <param name="method">HTTP method</param>
 		public FacebookApiRequest(Uri uri, string method)
 		{
 			m_request = WebRequest.CreateHttp(uri);
 			m_request.Method = method;
 		}
 
+		/// <summary>
+		/// Gets a single Facebook object as the result of an API request
+		/// </summary>
+		/// <returns>object represented in the API response</returns>
+		/// <typeparam name="T">Expected type of the result</typeparam>
 		public async Task<T> GetResult<T>()
 		{
 			// get the HTTP result
@@ -82,6 +100,11 @@ namespace gluontest
 			return DeserializeJson<T>(fullResult);
 		}
 
+		/// <summary>
+		/// Get a collection of results from an API request that returns multiple objects
+		/// </summary>
+		/// <returns>collection of Facebook API objects, potentially with more pages of results</returns>
+		/// <typeparam name="T">Expected type of all results</typeparam>
 		public async Task<FacebookPagedCollection<T>> GetResults<T>()
 		{
 			// get the HTTP result
@@ -94,6 +117,10 @@ namespace gluontest
 			return new FacebookPagedCollection<T>(fullResult, m_request.Method);
 		}
 
+		/// <summary>
+		/// Get a string representing the response from an API request without processing
+		/// </summary>
+		/// <returns>string returned from the API request</returns>
 		public async Task<string> GetRawResult()
 		{
 			// get the HTTP result
