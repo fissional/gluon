@@ -5,13 +5,11 @@ namespace gluontest
 {
 	public partial class CreatePost : ContentPage
 	{
-		private DateTime m_previousDate = DateTime.Now;
-
 		private DateTime SelectedDate
 		{
 			get
 			{
-				return datePost.Date + timePost.Time;
+				return switchSpecifyDate.IsToggled ? datePost.Date + timePost.Time : DateTime.Now;
 			}
 		}
 
@@ -48,7 +46,7 @@ namespace gluontest
 			}
 			catch (FacebookApiException fx)
 			{
-				await DisplayAlert(fx.Error.ErrorUserTitle, fx.Error.ErrorUserMessage, "OK");
+				await DisplayAlert(fx.Error.ErrorUserTitle ?? "Error Creating Post", fx.Error.ErrorUserMessage ?? fx.Error.Message, "OK");
 			}
 		}
 
@@ -61,42 +59,28 @@ namespace gluontest
 
 			// indicate this post will be unpublished if the publication date is after today
 			labelUnpublished.IsVisible = SelectedDate > DateTime.Now;
-			m_previousDate = SelectedDate;
 		}
 
 		private void switchDate_Toggled(object sender, ToggledEventArgs e)
 		{
-			datePost.IsEnabled = e.Value;
-			timePost.IsEnabled = e.Value;
-
-			if (e.Value)
-			{
-				// if the date pickers become enabled, display the previously selected date
-				m_previousDate = SelectedDate;
-				datePost.Date = m_previousDate.Date;
-				timePost.Time = m_previousDate - m_previousDate.Date;
-			}
-			else
-			{
-				// when they are disabled, show the current date/time
-				datePost.Date = DateTime.Now.Date;
-				timePost.Time = DateTime.Now - datePost.Date;
-			}
+			datePost.IsVisible = e.Value;
+			timePost.IsVisible = e.Value;
+			labelImmediate.IsVisible = !e.Value;
 		}
 
 		private void switchPublish_Toggled(object sender, ToggledEventArgs e)
 		{
 			if (switchSpecifyDate == null)
 			{
+				// this can happen before the date switch is constructed
 				return;
 			}
 
 			// if this post is not published, disable the date picker
+			switchSpecifyDate.IsEnabled = e.Value;
 			if (!e.Value)
 			{
 				switchSpecifyDate.IsToggled = false;
-				datePost.Date = m_previousDate.Date;
-				timePost.Time = m_previousDate - m_previousDate.Date;
 			}
 		}
 	}

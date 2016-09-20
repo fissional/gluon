@@ -16,18 +16,19 @@
 				<StackLayout Margin="0" Padding="1" BackgroundColor="Black">
 					<Editor x:Name="editorPostBody" HeightRequest="100" />
 				</StackLayout>
-				<StackLayout Orientation="Horizontal">
-					<Label VerticalOptions="Center" WidthRequest="100">Published</Label>
+				<StackLayout Margin="0, 12, 0, 0" Orientation="Horizontal">
+					<Label VerticalOptions="Center" WidthRequest="120">Published</Label>
 					<Switch x:Name="switchPublished" Toggled="switchPublish_Toggled" IsToggled="true" />
 				</StackLayout>
 				<StackLayout Orientation="Horizontal">
-					<Label VerticalOptions="Center" WidthRequest="100">Specify Date</Label>
+					<Label VerticalOptions="Center" WidthRequest="120">Specify Date</Label>
 					<Switch x:Name="switchSpecifyDate" Toggled="switchDate_Toggled" />
 				</StackLayout>
-				<StackLayout Orientation="Horizontal" VerticalOptions="Center">
-					<Label VerticalOptions="Center" WidthRequest="100">Post Date:</Label>
-					<DatePicker x:Name="datePost" PropertyChanged="datePost_PropertyChanged" IsEnabled="false" />
-					<TimePicker x:Name="timePost" PropertyChanged="datePost_PropertyChanged" IsEnabled="false" />
+				<StackLayout Orientation="Horizontal" VerticalOptions="Center" HeightRequest="36">
+					<Label VerticalOptions="Center" WidthRequest="120">Post Date:</Label>
+					<Label x:Name="labelImmediate" VerticalOptions="Center">Now</Label>
+					<DatePicker x:Name="datePost" PropertyChanged="datePost_PropertyChanged" IsVisible="false" />
+					<TimePicker x:Name="timePost" PropertyChanged="datePost_PropertyChanged" IsVisible="false" />
 				</StackLayout>
 				<Label x:Name="labelUnpublished" TextColor="Red" IsVisible="false">
 					* this post will not be published yet
